@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from demo.dashboardmarket.com/hexadash-html/ltr/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Feb 2023 09:47:01 GMT -->
+{% include'admin/header.html'%}
+
+<body class="layout-light side-menu">
+  <div class="mobile-search">
+    <form action="https://demo.dashboardmarket.com/" class="search-form">
+      <img src="img/svg/search.svg" alt="search" class="svg">
+      <input class="form-control me-sm-2 box-shadow-none" type="search" placeholder="Search..." aria-label="Search">
+    </form>
+  </div>
+  <div class="mobile-author-actions"></div>
+  <header class="header-top">
+
+    {% include'admin/sidebar.html'%}
+
+
+  </header>
+
+
+
+  <!--
+
+<li class="">
+<a href="rate.html">Rate</a>
+</li>
+
+
+
+<li class="">
+<a href="uploads.html">Upload</a>
+</li>
+</ul>
+</li>
+
+
+--->
+
+
+
+
+  </ul>
+  </div>
+  </div>
+  </div>
+  <div class="contents">
+    <div class="crm mb-25">
+      <div class="container-fluid">
+        <div class="row ">
+          <div class="col-lg-12">
+            <div class="breadcrumb-main">
+              <h4 class="text-capitalize breadcrumb-title">Dashboard</h4>
+              <div class="breadcrumb-action justify-content-center flex-wrap">
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+          <div class="col-xxl-12">
+            <div class="row">
+              <div class="col-xxl-6 col-sm-6 mb-25">
+                <div class="ap-po-details ap-po-details--2 p-25 radius-xl d-flex justify-content-between">
+                  <div class="overview-content w-100">
+                    <div class=" ap-po-details-content d-flex flex-wrap justify-content-between">
+                      <div class="ap-po-details__titlebar">
+                        <h1>{{category.count}}</h1>
+                        <p>Total Categories</p>
+                      </div>
+                      <div class="ap-po-details__icon-area">
+                        <div class="svg-icon order-bg-opacity-primary color-primary">
+                          <i class="uil uil-briefcase-alt"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xxl-6 col-sm-6 mb-25">
+
+                <div class="ap-po-details ap-po-details--2 p-25 radius-xl d-flex justify-content-between">
+                  <div class="overview-content w-100">
+                    <div class=" ap-po-details-content d-flex flex-wrap justify-content-between">
+                      <div class="ap-po-details__titlebar">
+                        <h1>{{category.count}}</h1>
+                        <p>Total Ads</p>
+                      </div>
+                      <div class="ap-po-details__icon-area">
+                        <div class="svg-icon order-bg-opacity-info color-info">
+                          <i class="uil uil-shopping-cart-alt"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-xxl-6 col-sm-6 mb-25">
+
+                <div class="ap-po-details ap-po-details--2 p-25 radius-xl d-flex justify-content-between">
+                  <div class="overview-content w-100">
+                    <div class=" ap-po-details-content d-flex flex-wrap justify-content-between">
+                      <div class="ap-po-details__titlebar">
+                        <h1>{{blockedads.count}}</h1>
+                        <p>Total Blocked Ads</p>
+                      </div>
+                      <div class="ap-po-details__icon-area">
+                        <div class="svg-icon order-bg-opacity-secondary color-secondary">
+                          <i class="uil uil-usd-circle"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-xxl-6 col-sm-6 mb-25">
+
+                <div class="ap-po-details ap-po-details--2 p-25 radius-xl d-flex justify-content-between">
+                  <div class="overview-content w-100">
+                    <div class=" ap-po-details-content d-flex flex-wrap justify-content-between">
+                      <div class="ap-po-details__titlebar">
+                        <h1>{{customers.count}}</h1>
+                        <p>Total Customers</p>
+                      </div>
+                      <div class="ap-po-details__icon-area">
+                        <div class="svg-icon order-bg-opacity-warning color-warning">
+                          <i class="uil uil-users-alt"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          
+
+          <div class="card-body p-0 pb-sm-25">
+            <div class="tab-content">
+
+              <div class="tab-pane active show" id="salesgrowth" role="tabpanel" aria-labelledby="salesgrowth-tab">
+                <div class="label-detailed label-detailed--two">
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+    </div>
+
+  </div>
+  </div>
+  </div>
+  
+  </main>
+  <div id="overlayer">
+    <div class="loader-overlay">
+      <div class="dm-spin-dots spin-lg">
+        <span class="spin-dot badge-dot dot-primary"></span>
+        <span class="spin-dot badge-dot dot-primary"></span>
+        <span class="spin-dot badge-dot dot-primary"></span>
+        <span class="spin-dot badge-dot dot-primary"></span>
+      </div>
+    </div>
+  </div>
+  <div class="overlay-dark-sidebar"></div>
+  <div class="customizer-overlay"></div>
+  <div class="customizer-wrapper">
+    <div class="customizer">
+      <div class="customizer__head">
+        <h4 class="customizer__title">Customizer</h4>
+        <span class="customizer__sub-title">Customize your overview page layout</span>
+        <a href="#" class="customizer-close">
+          <img class="svg" src="admin/img/svg/x2.svg" alt="">
+        </a>
+      </div>
+      <div class="customizer__body">
+        <div class="customizer__single">
+          <h4>Layout Type</h4>
+          <ul class="customizer-list d-flex layout">
+            <li class="customizer-list__item">
+              <a href="https://demo.dashboardmarket.com/hexadash-html/ltr" class="active">
+                <img src="img/ltr.png" alt="">
+                <i class="fa fa-check-circle"></i>
+              </a>
+            </li>
+            <li class="customizer-list__item">
+              <a href="https://demo.dashboardmarket.com/hexadash-html/rtl">
+                <img src="admin/img/rtl.png" alt="">
+                <i class="fa fa-check-circle"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="customizer__single">
+          <h4>Sidebar Type</h4>
+          <ul class="customizer-list d-flex l_sidebar">
+            <li class="customizer-list__item">
+              <a href="#" data-layout="light" class="dark-mode-toggle active">
+                <img src="admin/img/light.png" alt="">
+                <i class="fa fa-check-circle"></i>
+              </a>
+            </li>
+            <li class="customizer-list__item">
+              <a href="#" data-layout="dark" class="dark-mode-toggle">
+                <img src="admin/img/dark.png" alt="">
+                <i class="fa fa-check-circle"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="customizer__single">
+          <h4>Navbar Type</h4>
+          <ul class="customizer-list d-flex l_navbar">
+            <li class="customizer-list__item">
+              <a href="#" data-layout="side" class="active">
+                <img src="img/side.png" alt="">
+                <i class="fa fa-check-circle"></i>
+              </a>
+            </li>
+            <li class="customizer-list__item top">
+              <a href="#" data-layout="top">
+                <img src="img/top.png" alt="">
+                <i class="fa fa-check-circle"></i>
+              </a>
+            </li>
+            <li class="colors"></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!---
+
+  <h6>Daily Overview</h6>
+<div class="dropdown">
+<a class="dropdown-toggle btn btn-sm" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Export <span class="la la-angle-down"></span>
+</a>
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+<a class="dropdown-item" href="#">Action</a>
+<a class="dropdown-item" href="#">Another action</a>
+<a class="dropdown-item" href="#">Something else here</a>
+</div>
+</div>
+</div>
+</div>
+<div class="card-body">
+<div class="card-progress">
+<div class="card-progress__summery d-flex justify-content-between">
+<div>
+<strong class="color-primary">5,461</strong>
+<span>Users Today</span>
+</div>
+<div>
+<strong class="color-dark">8,085</strong>
+<span>Expected Users</span>
+</div>
+</div>
+
+--->
+
+  {% include'admin/footer.html'%}
+  <!-- Mirrored from demo.dashboardmarket.com/hexadash-html/ltr/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Feb 2023 09:47:03 GMT -->
+
+</html>

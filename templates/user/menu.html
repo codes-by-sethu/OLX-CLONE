@@ -1,0 +1,39 @@
+{%if session['PROJECT_NAME']=='olx'%}
+<a class="navbar-logo" href="/"><img src="{{url_for('static',filename='admin/img/logo.png')}}" alt="logo" width="90"
+    height="80"></a>
+{%else%}
+<a class="navbar-logo" href="/"><img src="{{url_for('static',filename='img/logo_2.png')}}" alt="logo" width="170"
+  height="90"></a>
+  <br/> <br/>
+{%endif%}
+<ul class="nav navbar-nav navbar-right">
+  {% if session and session['userDatas'] %}
+  <li class="">
+    <a class="btn-submit-ad" href="#">Hi {{session['userDatas']['username']}}! Sell or buy anything
+      you want</a>
+  </li>
+  <!-- <li style="margin-left: 20px;">
+    <a href="/cust_chat" style="margin-top: 0;">
+      <img style="width: 40px;height: 40px;" src="https://cdn-icons-png.flaticon.com/512/2885/2885648.png" />
+    </a>
+  </li> -->
+  <li style="margin-left: 20px;">
+    <a class="btn-submit-ad" href="/submit_ad">Sell your Product</a>
+  </li>
+
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+      aria-expanded="false">My Account <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <li><a href="/cust_chat">Messages</a></li>
+      <li><a href="/accountsettings">Ads</a></li>
+      <li><a href="/favourites">My Favourites</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a href="/accountsettings">Account Settings</a></li>
+      <li><a href="/userlogout">logout</a></li>
+    </ul>
+  </li>
+  {% else %}
+  <li><a href="/userlogin"><i class="fa fa-user"></i>Login</a></li>
+  {% endif %}
+</ul>

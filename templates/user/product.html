@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include'user/userheader.html'%}
+
+<body>
+
+
+
+  <header>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          {% include 'user/menu.html' %}
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-->
+    </nav>
+  </header>
+  <main>
+
+    <!-- header-search-main -->
+    {% include 'user/search.html'%}
+    <!-- /header-search-main -->
+
+    <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hm-wrap">
+      <div class="container">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 cat-wrap">
+          {% if categoryDatas|length <=0 %}
+          <center>
+          <p style="color:red;font-size:20px;margin-top:200px">No product found against this category</p>
+          </center> 
+          {% endif %}
+          <ul>
+            {% for categoryDatas in categoryDatas %}
+            <li><a href="/single_product/{{categoryDatas.id}}">
+                <!-- <i class="fa fa-ship"></i> -->
+                <img src="{{url_for('static',filename='uploads/'+categoryDatas.image1)}}"
+                  style="width: 200px;height: 300px;" /> <br />
+                <b>{{categoryDatas.title}}</b></a></li>
+            {% endfor %}
+          </ul>
+
+          <!-- <ul>
+            <li><a href=""><i class="fa fa-graduation-cap"></i> Education</a></li>
+            <li><a href=""><i class="fa fa-sitemap"></i> Directory</a></li>
+            <li><a href=""><i class="fa fa-shopping-cart"></i> Shop</a></li>
+            <li><a href=""><i class="fa fa-building-o"></i> Mall</a></li>
+          </ul>
+          <ul>
+            <li><a href=""><i class="fa fa-beer"></i> Samfunn</a></li>
+            <li><a href="../icon/cubes"><i class="fa fa-cubes"></i> For Sale</a></li>
+            <li><a href="../icon/cubes"><i class="fa fa-cubes"></i> Offering</a></li>
+            <li><a href="../icon/cubes"><i class="fa fa-money"></i> Bid/Auction</a></li>
+          </ul> -->
+        </div><!-- /cat-wrap-->
+
+
+
+      </div><!-- /container-->
+    </section><!-- /hm-wrap -->
+    <div class="ads-vr ads-vr-left" style="padding-top:0px !important">
+      <a href="https://byjus.com/" target="_blank">
+      <img src="{{url_for('static',filename='img/ad2.png')}}" style="width: 250px;height: 500px;" />
+    </a>
+    </div>
+    <div class="ads-vr ads-vr-right">
+      <a href="https://www.flipkart.com/" target="_blank">
+      <img src="{{url_for('static',filename='img/ad3.jpg')}}" style="width: 250px;height: 500px;" />
+    </a>
+    </div>
+  </main>
+  {% include'user/userfooter.html' %}
+
+</body>
+
+</html>

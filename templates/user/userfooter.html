@@ -1,0 +1,97 @@
+<footer>
+  <section class="col-lg-12 col-md-12 col-sm-12 hidden-xs footer-top">
+    <div class="container">
+      <!-- <a href="#"><img src="{{url_for('static',filename='template/img/ftr-top-img.png')}}"></a> -->
+    </div>
+  </section>
+
+  <section class="col-lg-12 col-md-12 col-sm-12 footer-btm">
+    <div class="container footer-btm-inr">
+
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+        {%if session['PROJECT_NAME']=='olx'%}
+        <a href="/"><img src="{{url_for('static',filename='admin/img/logo.png')}}" style="width: 106px;"></a>
+        {%else%}
+        <a href="/"><img src="{{url_for('static',filename='img/logo_2.png')}}" style="width: 150px;margin-left: -39px;"></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {%endif%}
+      </div>
+
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-5 ftr-menu">
+        <h3>Trending Cities</h3>
+        <ul>
+          <li><a href="#">Mumbai</a></li>
+          <li><a href="#">Pune</a></li>
+          <li><a href="#">Delhi</a></li>
+          <li><a href="#">Chennai</a></li>
+          <li><a href="#">Bengaluru</a></li>
+          <li><a href="#">Trivandrum</a></li>
+          <li><a href="#">Jaipur</a></li>
+          <li><a href="#">Kolkata</a></li>
+          <li><a href="#">Hyderabad</a></li>
+          <li><a href="#">Surat</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4 ftr-menu">
+        <h3>Trending Purchases</h3>
+        <ul>
+          <li><a href="#">S22 Ultra</a></li>
+          <li><a href="#">Apple I phone</a></li>
+          <li><a href="#">Appliances</a></li>
+          <li><a href="#">Laptops</a></li>
+          <li><a href="#">Earpods</a></li>
+          <li><a href="#">Trendy shoes</a></li>
+          <li><a href="#">Books</a></li>
+          <li><a href="#">Gadgets</a></li>
+          <li><a href="#">Houses</a></li>
+          <li><a href="#">Automobiles</a></li>
+        </ul>
+      </div>
+
+      <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ftr-social-wrap">
+        <span>Connect with us</span>
+        <ul id="ftr-social-btns" class="social-media-button" role="tabpanel" >
+            <a target="_blank" rel="nofollow" href="{{url_for('static',filename='https://www.facebook.com/vpnranks')}}"><li class="social-fb"><i class="fa fa-facebook"></i></li></a>
+            <a target="_blank" rel="nofollow" href="{{url_for('static',filename='https://twitter.com/VPNRanks')}}"><li class="social-tw"><i class="fa fa-twitter"></i></li></a>
+            <a target="_blank" rel="nofollow" href="{{url_for('static',filename='https://plus.google.com/+Vpnranks/posts')}}"><li class="social-gp"><i class="fa fa-google-plus"></i></li></a>
+        </ul>
+      </div>     -->
+
+    </div>
+  </section>
+
+  <section class="col-lg-12 col-md-12 col-sm-12 col-sm-12 footer-btm2">
+    <div class="container">
+      <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 footer-btm2-right pull-right">
+        <a href="/adminlogin" target="_blank">Admin Login</a>
+       </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 footer-btm2-left">
+        © 2015 
+        {%if session['PROJECT_NAME']=='olx'%} OLX {% else %} Selling Nest {%endif%}, All Rights Reserved
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 footer-btm2-right pull-right">
+        Powered By <a href=""> {%if session['PROJECT_NAME']=='olx'%} OLX {% else %} Selling Nest {%endif%}</a>
+      </div>
+     
+    </div>
+  </section>
+</footer>
+<!-- <footer>
+    <section class="col-lg-12 col-md-12 col-sm-12 hidden-xs footer-top">
+      <div class="container">
+          <a href="#"><img src="{{url_for('static',filename='img/ftr-top-img.png')}}"></a>
+      </div>
+    </section>
+  </footer> -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script
+  src="{{url_for('static',filename='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')}}"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+<!-- boostrap lightbox -->
+<script src="{{url_for('static',filename='js/bootstrap-lightbox.min.js')}}"></script>
+<!-- jquery -->
+<script src="{{url_for('static',filename='js/jquery.js')}}"></script>
+<!-- jquery -->
+<script src="{{url_for('static',filename='js/custom-script.js')}}"></script>

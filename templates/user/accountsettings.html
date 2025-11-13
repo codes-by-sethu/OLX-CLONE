@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'user/userheader.html' %}
+
+<body>
+
+
+  <header>
+    <nav class="navbar navbar-default">
+      <div class="container">
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class=" collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          {% include 'user/menu.html' %}
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-->
+    </nav>
+  </header>
+
+  <main>
+    <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 account-settings-wrap">
+      <div class="container">
+        <h2 class="">My Ads & Account settings</h2>
+        <!-- Nav tabs -->
+        <div class="card">
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#ads" aria-controls="ads" role="tab"
+                data-toggle="tab">Ads</a></li>
+            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab"
+                data-toggle="tab">Settings</a></li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane account-ads-wrap" role="tabpanel" id="ads">
+              
+              <div class="account-ads-main">
+                <!-- account-ads-blank -->
+                <div style="display:none;" class="account-ads-blank">
+                  <span><img src="{{url_for('static',filename='img/no-ads-img.png')}}""></span>
+              <p>You don't have active Ads. Place an ad now!</p>
+              <a class=" btn-submit-ad" href="#"> <i class="fa fa-plus"></i> Submit an Ad</a>
+                </div>
+
+                <div class="table-ads-wrap">
+                  <div class="table-responsive">
+                    <table class="table table-bordred table-striped">
+                      <thead>
+
+                        <th class="sort-list">Ad Title</th>
+                        <th>Price</th>
+                        <th>Brand</th>
+                        <th>Status</th>
+
+                      </thead>
+
+                      <tbody>
+                        {% for ad in ads%}
+                        <tr>
+                          <td class="tbl-ad-dtl">
+                            <span>{{ad.title}}</span>
+                            <a href="/single_product/{{ad.id}}"><i class="fa fa-external-link"></i> Preview</a>
+                            <!-- <a href=""><i class="fa fa-pencil-square-o"></i> Edit</a> -->
+                          </td>
+                          <td>Rs {{ad.price}}</td>
+                          <td>{{ad.brand}}</td>
+                          <td>
+                            {% if ad.verification_status=='Active'%}
+                            <a href="javascript:;" class="btn btn-tbl-status"
+                              onclick="changeAdStatus(`Inactive`,`{{ad.id}}`)">Disable Ad</a>
+                            <a href="javascript:;" class="btn btn-tbl-status"
+                              onclick="changeAdStatus(`Sold Out`,`{{ad.id}}`)">Mark as sold</a>
+                            {% else %}
+                            {% if ad.verification_status=='Inactive' %}
+                            <a href="javascript:;" class="btn btn-tbl-status"
+                              onclick="changeAdStatus(`Active`,`{{ad.id}}`)">Active Ad</a>
+                            {% else %}
+                            {{ad.verification_status}}
+                            {% endif %}
+                            {% endif %}
+                          </td>
+                        </tr>
+                        {% endfor%}
+
+
+                      </tbody>
+
+                    </table>
+                  </div>
+                </div>
+                <!-- /table-responsive -->
+              </div>
+
+            </div><!-- /Tab panes -->
+
+            <div class="tab-pane account-msg-wrap active" role="tabpanel" id="messages">
+              <table class="table table-bordred table-striped">
+                <thead>
+
+                  <th class="sort-list">Ad Title</th>
+                  <th>Price</th>
+                  <th>Brand</th>
+                  <th>Status</th>
+
+                </thead>
+
+                <tbody>
+                  {% for ad in ads%}
+                  <tr>
+                    <td class="tbl-ad-dtl">
+                      <span>{{ad.title}}</span>
+                      <a href="/single_product/{{ad.id}}"><i class="fa fa-external-link"></i> Preview</a>
+                      <!-- <a href=""><i class="fa fa-pencil-square-o"></i> Edit</a> -->
+                    </td>
+                    <td>Rs {{ad.price}}</td>
+                    <td>{{ad.brand}}</td>
+                    <td>
+                      {% if ad.verification_status=='Active'%}
+                      <a href="javascript:;" class="btn btn-tbl-status"
+                        onclick="changeAdStatus(`Inactive`,`{{ad.id}}`)">Disable Ad</a>
+                      <a href="javascript:;" class="btn btn-tbl-status"
+                        onclick="changeAdStatus(`Sold Out`,`{{ad.id}}`)">Mark as sold</a>
+                      {% else %}
+                      {% if ad.verification_status=='Inactive' %}
+                      <a href="javascript:;" class="btn btn-tbl-status"
+                        onclick="changeAdStatus(`Active`,`{{ad.id}}`)">Active Ad</a>
+                      {% else %}
+                      {{ad.verification_status}}
+                      {% endif %}
+                      {% endif %}
+                    </td>
+                  </tr>
+                  {% endfor%}
+
+
+                </tbody>
+
+              </table>
+              <script>
+                function changeAdStatus(status, id) {
+                  var form_data = new FormData();
+                  form_data.append('status', status);
+                  form_data.append('id', id);
+                  $.ajax({
+                    type: 'POST',
+                    url: '/changeAdStatus',
+                    data: form_data,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function (data) {
+                      if (data.status == true) {
+                        alert("Ad Status Changed");
+                        window.location.reload()
+                      } else {
+                        alert("Error.Try again");
+                      }
+                    },
+                  });
+                }
+              </script>
+
+            </div><!-- /Tab panes -->
+
+            <div class="tab-pane account-set-wrap" role="tabpanel" id="settings">
+              <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#changecontactdetails">My Profile</a>
+                    </h4>
+                  </div>
+
+                  <div id="changecontactdetails" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                      <div class="input-group setting-input-group">
+                        <label>Username: {{user.username}}</label>
+                      </div>
+                      <div class="input-group setting-input-group">
+                        <label> Email : {{user.email}}</label>
+                      </div>
+                      <div class="input-group setting-input-group">
+                        <label> Phone Number : {{user.phoneno}}</label>
+                      </div>
+
+                    </div>
+                  </div>
+                </div><!-- /Panel Default -->
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#changepassword">Change password</a>
+                    </h4>
+                  </div>
+                  <div id="changepassword" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <div class="input-group setting-input-group">
+                        <label>Current password<b class="asterisk">*</b></label>
+                        <input type="password" class="form-control" id="curr_pass">
+                      </div>
+                      <div class="input-group setting-input-group">
+                        <label>New password<b class="asterisk">*</b></label>
+                        <input type="password" class="form-control" id="new_pass">
+                      </div>
+
+                      <div class="input-group setting-input-group">
+                        <label>Confirm Password<b class="asterisk">*</b></label>
+                        <input type="password" class="form-control" id="conf_pass">
+                      </div><!-- /.setting-input-group-->
+
+                      <a href="javascript:;" class="btn btn-login" onclick="saveDatas()">Change Password</a>
+                    </div>
+                  </div>
+                </div>
+
+                <script>
+                  function saveDatas() {
+                    let curr_pass = document.getElementById('curr_pass').value;
+                    let new_pass = document.getElementById('new_pass').value;
+                    let conf_pass = document.getElementById('conf_pass').value;
+
+
+                    $(".val_error").remove();
+                    let validationFlag = true;
+                    if (curr_pass.length < 1) {
+                      $('#curr_pass').after('<span class="val_error" style="color:red">This field is required</span>');
+                      validationFlag = false;
+                    }
+                    if (new_pass.length < 1) {
+                      $('#new_pass').after('<span class="val_error" style="color:red">This field is required</span>');
+                      validationFlag = false;
+                    }
+                    if (conf_pass.length < 1) {
+                      $('#conf_pass').after('<span class="val_error" style="color:red">This field is required</span>');
+                      validationFlag = false;
+                    }
+                    if (!validationFlag) {
+                      return;
+                    }
+                    var form_data = new FormData();
+                    form_data.append('curr_pass', curr_pass);
+                    form_data.append('new_pass', new_pass);
+                    form_data.append('conf_pass', conf_pass);
+
+                    $.ajax({
+                      type: 'POST',
+                      url: '/change_password',
+                      data: form_data,
+                      contentType: false,
+                      cache: false,
+                      processData: false,
+                      success: function (data) {
+                        if (data.status == true) {
+                          alert(data.message);
+                          window.location.reload()
+                        } else {
+                          alert(data.message);
+                        }
+                      },
+                    });
+                  }
+                </script>
+
+                <!-- <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#deleteaccount">Delete Account</a>
+                    </h4>
+                  </div>
+                  <div id="deleteaccount" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <a href="#" class="btn btn-danger">Delete Account</a>
+                    </div>
+                  </div>
+                </div> -->
+              </div><!-- /Panel Group -->
+            </div><!-- /Tab panes -->
+          </div><!-- /Tab content -->
+        </div><!-- /Card -->
+      </div><!-- /container-->
+    </section>
+
+  </main>
+
+  {% include 'user/userfooter.html' %}
+
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include'user/userheader.html' %}
+
+
+<body>
+
+    <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 top-ad-box">Space Available For Ad</section>
+
+    <header>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-logo" href="#"><img src="{{url_for('static',filename='img/logo.png')}}"></a>
+                </div>
+
+            </div><!-- /.container-->
+        </nav>
+    </header>
+
+    <main>
+        <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 login-wrap">
+            <div class="container">
+                <div class="mainbox col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 forget-password-box">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h2>Thank you for Selling your Product here</h2>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                            <form class="form-horizontal" role="form">
+                                <p class="bg-warning"><b>Note: </b>We will send you a 6 digit verification code on your
+                                    email</p>
+                                    <div class="input-group contact-field-wrap">
+                                        <label>Email<b class="asterisk">*</b></label>
+                                        <input type="mail" class="form-control" id="email" value="@gmail.com" placeholder="example@gmail.com">
+                                      </div><!-- /custom-field-wrap-->
+                                <div class="input-group custom-field-wrap">
+                                    <label for="userEmail">Please enter your verification code<b
+                                            class="asterisk">*</b></label>
+                                    <input id="login-username" type="email" class="form-control" name="username"
+                                        value="" placeholder="">
+                                </div>
+                            </form>
+                            <div class="login-button-btm">
+                                <a href="#" class="btn btn-login" onclick="send_otp()">Send</a>
+                            </div>
+                            
+                            <button 
+                            onclick="verifyOtp()"
+                            class="btn btn-info btn-default btn-squared btn-transparent-info ">Verify OTP
+                            </button>
+                            
+
+                        </div>
+                        <!-- panel body -->
+                    </div>
+                    <!-- panel -->
+                </div>
+            </div>
+            <!-- /container-->
+        </section>
+
+        <!-- Ads Boxes -->
+        <div class="ads-vr ads-vr-left">Space Available For Ad</div>
+        <div class="ads-vr ads-vr-right">Space Available For Ad</div>
+        <!-- /Ads Boxes -->
+    </main>
+    <script>
+        function send_otp() {
+            let email = document.getElementById('email').value;
+            $(".val_error").remove();
+            let validationFlag = true;
+            var mailformat = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
+            if (email.length < 1 || !email.match(mailformat)) {
+                $('#email').after('<span class="val_error" style="color:red">please enter a valid email</span>');
+                validationFlag = false;
+            }
+            if (!validationFlag) {
+                return;
+            }
+            // JS AJAX CALL
+            var form_data = new FormData();
+            form_data.append('email', email);
+            
+
+            $.ajax({
+                type: 'POST',
+                url: '/send_otp',
+                data: form_data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (data) {
+                    if (data.status == true) {
+                        alert("otp sent");
+                    }
+                    else if (data.status == "notfound") {
+                        alert("no account found")
+                    }
+                    else {
+                        alert("something went wrong")
+                    }
+
+                },
+            });
+            otp = random_number
+            msg = Message('Hello', sender = 'mail@accenta.in', recipients = ['lakshmisethuktm202@gmail.com'])
+            msg.body = "Hello, Your one time OTP is " + str(otp)
+            mail.send(msg)
+
+        }
+        function verifyOtp() {
+            let email = document.getElementById('email').value;
+            let otp = document.getElementById('otp').value;
+            $(".val_error").remove();
+            let validationFlag = true;
+            var mailformat = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
+            if (email.length < 1 || !email.match(mailformat)) {
+                $('#email').after('<span class="val_error" style="color:red">please enter a valid email</span>');
+                validationFlag = false;
+            }
+            if (otp.length < 1) {
+                $('#otp').after('<span class="val_error" style="color:red">please enter the otp</span>');
+                validationFlag = false;
+            }
+            if (!validationFlag) {
+                return;
+            }
+            // JS AJAX CALL
+            var form_data = new FormData();
+            form_data.append('email', email);
+            form_data.append('otp', otp);
+            
+            $.ajax({
+                type: 'POST', url: '/verifyOtp',
+                data: form_data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (data) {
+                    if (data.status == true) {
+                        alert("otp verified ");
+                        window.location.href = "/userlogin"
+                    }
+
+                },
+            });
+           
+        }
+    </script>
+
+    {% include'user/userfooter.html' %}
+
+</body>
+
+</html>

@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from demo.dashboardmarket.com/hexadash-html/ltr/order.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Feb 2023 09:47:35 GMT -->
+{% include'admin/header.html'%}
+
+<body class="layout-light side-menu">
+  <div class="mobile-search">
+    <form action="#" class="search-form">
+      <img src="img/svg/search.svg" alt="search" class="svg">
+      <input class="form-control me-sm-2 box-shadow-none" type="search" placeholder="Search..." aria-label="Search">
+    </form>
+  </div>
+  <div class="mobile-author-actions"></div>
+  <header class="header-top">
+
+    {% include'admin/sidebar.html'%}
+
+  </header>
+
+  <div class="contents">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="shop-breadcrumb">
+            <div class="breadcrumb-main">
+              <h4 class="text-capitalize breadcrumb-title">Categories</h4>
+              <div class="breadcrumb-action justify-content-center flex-wrap">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#"><i class="uil uil-estate"></i>Categories page</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"></li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="userDatatable orderDatatable global-shadow py-30 px-sm-30 px-20 radius-xl w-100 mb-30">
+            <div class="project-top-wrapper d-flex justify-content-between flex-wrap mb-25 mt-n10">
+              <div class="content-center mt-10">
+                <div class="button-group m-0 mt-xl-0 mt-sm-10 order-button-group">
+
+                  <button type="button" class="btn btn-sm btn-primary me-0 radius-md" style="color: white;">
+                    <i class="la la-plus"></i> <a href="/add_category" style="color: white;">Add Category</a></button>
+                </div>
+              </div>
+            </div>
+            <div class="tab-content" id="ap-tabContent">
+              <div class="tab-pane fade show active" id="ap-overview" role="tabpanel" aria-labelledby="ap-overview-tab">
+
+                <div class="table-responsive">
+                  <table class="table mb-0 table-hover table-borderless border-0">
+
+                    <tr class="userDatatable-header">
+
+                      <div class="d-flex align-items-center">
+                        <div class="bd-example-indeterminate">
+                          <div class="checkbox-theme-default custom-checkbox  check-all">
+                            <input class="checkbox" type="checkbox" id="check-23e">
+
+                          </div>
+                        </div>
+                      </div>
+                      <thead>
+                        <th>
+                          <span class="userDatatable-title">Category</span>
+                        </th>
+                        <th>
+                          <span class="userDatatable-title">Status</span>
+                        </th>
+                        <th> <span class="userDatatable-title">Thumbnail</span>
+                        </th>
+                        <th>
+                          <span class="userDatatable-title">Actions</span>
+                        </th>
+
+                      </thead>
+                      <tbody>
+                        {% for categoryData in categoryDatas %}
+                        <tr>
+                          <td>{{categoryData.name}}</td>
+
+                          <td>
+                            {% if categoryData.status == 'Active' %}
+                            <label>
+                              <div class="orderDatatable-status d-inline-block">
+                                <span class="order-bg-opacity-success  text-success rounded-pill active">
+                                  {{categoryData.status}}
+                                </span>
+                              </div>
+                            </label>
+                            {% else %}
+                            <label>
+
+                              <div class="orderDatatable-status d-inline-block">
+                                <span class="order-bg-opacity-danger  text-danger rounded-pill active">
+
+
+                                  {{categoryData.status}}
+                                </span>
+                              </div>
+                            </label>
+                            {% endif %}
+                          </td>
+                          <td>
+                            <img src="{{url_for('static',filename='uploads/'+categoryData.image)}}" />
+                          </td>
+
+
+
+
+                </div>
+
+
+                <style>
+                  img{
+                    height: 60px;
+                    width: 60px;
+                  }
+                </style>
+
+                <td>
+                  <div class="d-flex text-capitalize">
+                    <button type="button"
+                      class="breadcrumb-edit btn btn-white border-0 color-primary content-center fs-12 fw-500 radius-md">
+                      <img src="{{url_for('static',filename='admin/img/svg/edit-3.svg')}}" alt="edit-3" class="svg">
+                      
+                      <a href="/editCategory/{{categoryData.id}}">Edit</a>
+                    
+                    </button>
+
+
+
+
+                    <button type="button"
+                      class="breadcrumb-remove border-0 color-danger content-center bg-white fs-12 fw-500 ms-10 radius-md"
+                      onclick="deleteData('{{categoryData.id}}')">
+                      <img class="svg" src="{{url_for('static',filename='admin/img/svg/trash-2.svg')}}" alt="trash-2"
+                        onclick="deleteData(`{{categoryData.id}}`)" value="Delete">
+                      Delete
+                    </button>
+
+                    <i class="ti-trash"></i>
+                    </button>
+                  </div>
+                </td>
+                </tr>
+                <!---
+                  <div class="button-group add-product-btn d-flex justify-content-sm-end justify-content-center mt-40">
+                  <button class="btn btn-light btn-default btn-squared fw-400 text-capitalize" type="reset">Cancel
+                  </button>
+                  <button class="btn btn-primary btn-default btn-squared text-capitalize" onclick="save()">save
+                    Category
+                  </button>
+                </div>
+              -->
+
+                {% endfor %}
+                </tbody>
+                </table>
+              </div>
+
+
+
+
+
+
+              <td>
+                <ul class="orderDatatable_actions mb-0 d-flex flex-wrap float-end">
+                  <li>
+                    <a href="#" class="view">
+                      <i class="uil uil-eye"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="edit">
+                      <i class="uil uil-edit"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="remove">
+                      <i class="uil uil-trash-alt"></i>
+                    </a>
+                  </li>
+                </ul>
+              </td>
+              </tr>
+
+              </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  <footer class="footer-wrapper">
+    <div class="footer-wrapper__inside">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="footer-copyright">
+              <p><span>© 2015</span><a href="#">OLX</a>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <!-- <div class="footer-menu text-end">
+              <ul>
+                <li>
+                  <a href="#">About</a>
+                </li>
+                <li>
+                  <a href="#">Team</a>
+                </li>
+                <li>
+                  <a href="#">Contact</a>
+                </li>
+              </ul>
+            </div> -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  </main>
+  <div id="overlayer">
+    <div class="loader-overlay">
+      <div class="dm-spin-dots spin-lg">
+        <span class="spin-dot badge-dot dot-primary"></span>
+        <span class="spin-dot badge-dot dot-primary"></span>
+        <span class="spin-dot badge-dot dot-primary"></span>
+        <span class="spin-dot badge-dot dot-primary"></span>
+      </div>
+    </div>
+  </div>
+  <div class="overlay-dark-sidebar"></div>
+  <div class="customizer-overlay"></div>
+  <div class="customizer-wrapper">
+    <div class="customizer">
+      <div class="customizer__head">
+        <h4 class="customizer__title">Customizer</h4>
+        <span class="customizer__sub-title">Customize your overview page layout</span>
+        <a href="#" class="customizer-close">
+          <img class="svg" src="img/svg/x2.svg" alt="">
+        </a>
+      </div>
+      <div class="customizer__body">
+        <div class="customizer__single">
+          <h4>Layout Type</h4>
+          <ul class="customizer-list d-flex layout">
+            <li class="customizer-list__item">
+              <a href="https://demo.dashboardmarket.com/hexadash-html/ltr" class="active">
+                <img src="img/ltr.png" alt="">
+                <i class="fa fa-check-circle"></i>
+              </a>
+            </li>
+            <li class="customizer-list__item">
+              <a href="https://demo.dashboardmarket.com/hexadash-html/rtl">
+                <img src="img/rtl.png" alt="">
+                <i class="fa fa-check-circle"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="customizer__single">
+          <h4>Sidebar Type</h4>
+          <ul class="customizer-list d-flex l_sidebar">
+            <li class="customizer-list__item">
+              <a href="#" data-layout="light" class="dark-mode-toggle active">
+                <img src="img/light.png" alt="">
+                <i class="fa fa-check-circle"></i>
+              </a>
+            </li>
+            <li class="customizer-list__item">
+              <a href="#" data-layout="dark" class="dark-mode-toggle">
+                <img src="img/dark.png" alt="">
+                <i class="fa fa-check-circle"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="customizer__single">
+          <h4>Navbar Type</h4>
+          <ul class="customizer-list d-flex l_navbar">
+            <li class="customizer-list__item">
+              <a href="#" data-layout="side" class="active">
+                <img src="img/side.png" alt="">
+                <i class="fa fa-check-circle"></i>
+              </a>
+            </li>
+            <li class="customizer-list__item top">
+              <a href="#" data-layout="top">
+                <img src="img/top.png" alt="">
+                <i class="fa fa-check-circle"></i>
+              </a>
+            </li>
+            <li class="colors"></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function deleteData(deleteId) {
+      if (confirm("Are You Sure?") == true) {
+        $.ajax({
+          data: {
+            deleteId: deleteId,
+          },
+          type: 'post',
+          url: '/delete_category'
+        })
+          .done(function (data) {
+            window.location.reload()
+          });
+      }
+    }
+  </script>
+
+  {% include'admin/footer.html'%}
+
+</body>
+
+<!-- Mirrored from demo.dashboardmarket.com/hexadash-html/ltr/order.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Feb 2023 09:47:35 GMT -->
+
+</html>

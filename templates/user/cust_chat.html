@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+{% include'admin/header.html'%}
+
+<body class="layout-light side-menu">
+    <div class="mobile-search">
+        <form action="https://demo.dashboardmarket.com/" class="search-form">
+            <input class="form-control me-sm-2 box-shadow-none" type="search" placeholder="Search..."
+                aria-label="Search">
+        </form>
+    </div>
+    <div class="mobile-author-actions"></div>
+    <header class="header-top">
+        <nav class="navbar navbar-light">
+            <div class="navbar-left">
+                <div class="logo-area">
+                    {%if session['PROJECT_NAME']=='olx'%}
+                    <a class="navbar-logo" href="/"><img src="{{url_for('static',filename='admin/img/logo.png')}}"
+                            alt="logo" width="60" height="50"></a>
+                    {%else%}
+                    <a class="navbar-logo" href="/"><img src="{{url_for('static',filename='img/logo_2.png')}}"
+                            alt="logo" width="150" height="80"></a>
+                    <br /> <br />
+                    {%endif%}
+
+                    <a href="#" class="sidebar-toggle">
+                </div>
+                <div class="top-menu">
+                    <div class="hexadash-top-menu position-relative">
+                        <div class="navbar-right">
+                            <ul class="navbar-right__menu">
+                                <li class="nav-search">
+                                    <a href="#" class="search-toggle">
+                                        <i class="uil uil-search"></i>
+                                        <i class="uil uil-times"></i>
+                                    </a>
+                                    <form action="https://demo.dashboardmarket.com/" class="search-form-topMenu">
+                                        <span class="search-icon uil uil-search"></span>
+                                        <input class="form-control me-sm-2 box-shadow-none" type="search"
+                                            placeholder="Search..." aria-label="Search">
+                                    </form>
+                                </li>
+                                <div class="navbar-right__mobileAction d-md-none">
+                                    <a href="#" class="btn-search">
+                                        <img src="img/svg/search.svg" alt="search" class="svg feather-search">
+                                        <img src="img/svg/x.svg" alt="x" class="svg feather-x"></a>
+                                    <a href="#" class="btn-author-action">
+                                        <img class="svg" src="img/svg/more-vertical.svg" alt="more-vertical"></a>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="main-content">
+        <div class="" style="padding-top: 86px !important;">
+            <div class="chat-area d-flex mb-40">
+                <div class="mb-lg-0 mb-40 chat-sidebar">
+                    <div class="sidebar-group left-sidebar chat_sidebar">
+                        <div id="chat" class="left-sidebar-wrap radius-xl active">
+                            <div class="chat-wrapper py-25">
+                                <div class="search-tab">
+                                    <ul class="nav ap-tab-main border-bottom text-capitalize" id="ueberTab"
+                                        role="tablist">
+                                        <li class="nav-item me-0">
+                                            <a class="nav-link active" id="first-tab" data-bs-target="#panel_b_first"
+                                                data-secondary="#panel_a_first" data-bs-toggle="tab" href="#first"
+                                                role="tab" aria-selected="true">Hi,
+                                                {{session['userDatas']['username']}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="search-body">
+                                    <div class="tab-content" id="ueberTabA">
+                                        <div class="tab-pane fade show active" id="panel_a_first" role="tabpanel"
+                                            aria-labelledby="first-tab">
+                                            <ul class="user-list">
+                                                {% for chatGroup in chatGroups%}
+                                                <li class="user-list-item" {% if
+                                                    request.args.get('product_id')|int==chatGroup.product_id %}
+                                                    style="background: #ddd;" {% endif %}>
+                                                    <a
+                                                        href="/cust_chat?group_id={{chatGroup.id}}&receiver_id={{chatGroup.receiver}}&product_id={{chatGroup.product_id}}">
+                                                        <div class="user-list-item__wrapper">
+                                                            <div class="avatar avatar-circle ms-0">
+                                                                <img src="{{url_for('static',filename='uploads/'+chatGroup.image1)}}"
+                                                                    class="rounded-circle wh-46 d-flex bg-opacity-primary"
+                                                                    alt="image">
+                                                                <!-- <div class="badge-direction-bottom">
+                                                                    <span class="chat-badge-dot avatar-online"></span>
+                                                                </div> -->
+                                                            </div>
+                                                            <div class="users-list-body">
+                                                                <div class="users-list-body-title">
+                                                                    <h6>{{chatGroup.title}}</h6>
+                                                                    <div class="text-limit" data-maxlength="10">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="last-chat-time unread">
+                                                                    <div
+                                                                        class="total-message mt-1 d-flex justify-content-end">
+                                                                        <!-- <span class="badge badge-success ">!</span> -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="ueberTabB">
+                    <div class="tab-pane fade  show active" id="panel_b_first" role="tabpanel"
+                        aria-labelledby="first-tab">
+                        <div class="chat">
+                            <div class="chat-body bg-white radius-xl">
+                                <div class="chat-header">
+                                    <div class="media chat-name align-items-center">
+                                        <div class="media-body align-self-center ">
+                                            <h5 class=" mb-0 fw-500 mb-2">{% if productData%} {{productData.title}} {%endif%}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chat-box chat-box--big p-xl-30 ps-lg-20 pe-lg-0">
+                                    {% for message in messages %}
+
+
+                                    {% if message.messenger_id|int==session['userDatas']['id']|int%}
+                                    <div class="flex-1 justify-content-end d-flex outgoing-chat mt-20">
+                                        <div class="chat-text-box">
+                                            <div class="media ">
+                                                <div class="media-body">
+                                                    <div class="chat-text-box__content">
+                                                        <div
+                                                            class="chat-text-box__title d-flex align-items-center justify-content-end mb-2">
+                                                            <!-- <h6 class="fs-14">You</h6> -->
+                                                            <span
+                                                                class="chat-text-box__time fs-12 color-light fw-400">{{message.date}}
+                                                                {{message.time}}</span>
+                                                        </div>
+                                                        <div class="d-flex align-items-center justify-content-end">
+
+                                                            <div class="chat-text-box__subtitle p-20 bg-deep">
+                                                                <p class="color-gray">{{message.message}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {%else%}
+                                    <div class="flex-1 incoming-chat">
+                                        <div class="chat-text-box ">
+                                            <div class="media d-flex">
+                                                <div class="media-body">
+                                                    <div class="chat-text-box__content">
+                                                        <div class="chat-text-box__title d-flex align-items-center">
+                                                            <!-- <h6 class="fs-14">{{message.username}}</h6> -->
+                                                            <span
+                                                                class="chat-text-box__time fs-12 color-light fw-400 ms-15">{{message.date}}
+                                                                {{message.time}}</span>
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-20 mt-10">
+                                                            <div class="chat-text-box__subtitle p-20 bg-primary">
+                                                                <p class="color-white">{{message.message}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {%endif%}
+                                    {% endfor %}
+
+                                </div>
+
+                                <div class="chat-footer px-xl-30 px-lg-20 pb-lg-30 pt-1">
+                                    <div class="chat-type-text">
+                                        <div class="pt-0 outline-0 pb-0 pe-0 ps-0 rounded-0 position-relative d-flex align-items-center"
+                                            tabindex="-1">
+                                            <div
+                                                class="d-flex justify-content-between align-items-center w-100 flex-wrap">
+                                                {% if request.args.get('product_id')%}
+                                                <div
+                                                    class=" flex-1 d-flex align-items-center chat-type-text__write ms-0">
+                                                    <input class="form-control border-0 bg-transparent box-shadow-none"
+                                                        id="message_text" placeholder="Type your message...">
+                                                </div>
+                                                <div class="chat-type-text__btn">
+                                                    <button type="button"
+                                                        class="border-0 btn-primary wh-50 p-10 rounded-circle"
+                                                        onclick="sendMessage()">
+                                                        <img class="svg"
+                                                            src="{{url_for('static',filename='admin/img/svg/send.svg')}}"
+                                                            alt="send"></button>
+                                                </div>
+                                                {% else %}
+                                                <p style="color: red;">Hi {{session['userDatas']['username']}}, Please
+                                                    select any product to continue your chat..</p>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    function sendMessage() {
+                                        let message = document.getElementById('message_text').value
+                                        var form_data = new FormData();
+                                        form_data.append('message', message);
+                                        form_data.append('group_id', `{{request.args.get('group_id')}}`);
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: '/sendUserMessage',
+                                            data: form_data,
+                                            contentType: false,
+                                            cache: false,
+                                            processData: false,
+                                            success: function (data) {
+                                                window.location.reload()
+                                            }
+                                        });
+                                    }
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+
+
+
+
+    {% include'admin/footer.html'%}
+</body>
+
+<!-- Mirrored from demo.dashboardmarket.com/hexadash-html/ltr/product-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Feb 2023 09:47:33 GMT -->
+
+</html>

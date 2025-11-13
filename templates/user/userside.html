@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from demo.dashboardmarket.com/hexadash-html/ltr/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Feb 2023 09:47:01 GMT -->
+{% include'admin/header.html'%}
+
+
+
+<nav class="navbar navbar-light">
+  <div class="navbar-left">
+    <div class="logo-area">
+      <a class="navbar-brand" href="index.html">
+        <img class="dark" src="{{url_for('static',filename='admin/img/logo-dark.png')}}" alt="logo">
+        <img class="light" src="{{url_for('static',filename='admin/img/logo-white.png')}}" alt="logo">
+      </a>
+      <a href="#" class="sidebar-toggle">
+        <img class="svg" src="{{url_for('static',filename='admin/img/svg/align-center-alt.svg')}}" alt="img"></a>
+    </div>
+
+   
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+  </div>
+  </div>
+  </div>
+
+  <div class="navbar-right">
+    <ul class="navbar-right__menu">
+      <li class="nav-search">
+        <a href="#" class="search-toggle">
+          <i class="uil uil-search"></i>
+          <i class="uil uil-times"></i>
+        </a>
+        <form action="https://demo.dashboardmarket.com/" class="search-form-topMenu">
+          <span class="search-icon uil uil-search"></span>
+          <input class="form-control me-sm-2 box-shadow-none" type="search" placeholder="Search..." aria-label="Search">
+        </form>
+      </li>
+      <li class="nav-message">
+        <div class="dropdown-custom">
+          <a href="javascript:;" class="nav-item-toggle icon-active">
+            <img class="svg" src="{{url_for('static',filename='admin/img/svg/message.svg')}}" alt="img">
+          </a>
+          <div class="dropdown-parent-wrapper">
+            <div class="dropdown-wrapper">
+              <h2 class="dropdown-wrapper__title">Messages <span class="badge-circle badge-success ms-1">2</span></h2>
+              <ul>
+                <li class="author-online has-new-message">
+                  <div class="user-avater">
+                    <img src="admin/img/team-1.png" alt="">
+                  </div>
+                  <div class="user-message">
+                    <p>
+                      <a href="#" class="subject stretched-link text-truncate" style="max-width: 180px;">Web Design</a>
+                      <span class="time-posted">3 hrs ago</span>
+                    </p>
+                    <p>
+                      <span class="desc text-truncate" style="max-width: 215px;">Lorem
+                        ipsum
+                        dolor amet cosec Lorem ipsum</span>
+                      <span class="msg-count badge-circle badge-success badge-sm">1</span>
+                    </p>
+                  </div>
+                </li>
+                <li class="author-offline has-new-message">
+                  <div class="user-avater">
+                    <img src="admin/img/team-1.png" alt="">
+                  </div>
+                  <div class="user-message">
+                    <p>
+                      <a href="#" class="subject stretched-link text-truncate" style="max-width: 180px;">Web Design</a>
+                      <span class="time-posted">3 hrs ago</span>
+                    </p>
+                    <p>
+                      <span class="desc text-truncate" style="max-width: 215px;">Lorem
+                        ipsum
+                        dolor amet cosec Lorem ipsum</span>
+                      <span class="msg-count badge-circle badge-success badge-sm">1</span>
+                    </p>
+                  </div>
+                </li>
+                <li class="author-online has-new-message">
+                  <div class="user-avater">
+                    <img src="img/team-1.png" alt="">
+                  </div>
+                  <div class="user-message">
+                    <p>
+                      <a href="#" class="subject stretched-link text-truncate" style="max-width: 180px;">Web Design</a>
+                      <span class="time-posted">3 hrs ago</span>
+                    </p>
+                    <p>
+                      <span class="desc text-truncate" style="max-width: 215px;">Lorem
+                        ipsum
+                        dolor amet cosec Lorem ipsum</span>
+                      <span class="msg-count badge-circle badge-success badge-sm">1</span>
+                    </p>
+                  </div>
+                </li>
+                <li class="author-offline">
+                  <div class="user-avater">
+                    <img src="img/team-1.png" alt="">
+                  </div>
+                  <div class="user-message">
+                    <p>
+                      <a href="#" class="subject stretched-link text-truncate" style="max-width: 180px;">Web Design</a>
+                      <span class="time-posted">3 hrs ago</span>
+                    </p>
+                    <p>
+                      <span class="desc text-truncate" style="max-width: 215px;">Lorem
+                        ipsum
+                        dolor amet cosec Lorem ipsum</span>
+                    </p>
+                  </div>
+                </li>
+                <li class="author-offline">
+                  <div class="user-avater">
+                    <img src="{{url_for('static',filename='admin/img/team-1.png')}}" alt="">
+                  </div>
+                  <div class="user-message">
+                    <p>
+                      <a href="#" class="subject stretched-link text-truncate" style="max-width: 180px;">Web Design</a>
+                      <span class="time-posted">3 hrs ago</span>
+                    </p>
+                    <p>
+                      <span class="desc text-truncate" style="max-width: 215px;">Lorem
+                        ipsum
+                        dolor amet cosec Lorem ipsum</span>
+                    </p>
+                  </div>
+                </li>
+              </ul>
+              <a href="#" class="dropdown-wrapper__more">See All Message</a>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-author">
+        <div class="dropdown-custom">
+          <a href="javascript:;" class="nav-item-toggle"><img
+              src="{{url_for('static',filename='admin/img/author-nav.jpg')}}" alt="" class="rounded-circle">
+            <span class="nav-item__title">Danial<i class="las la-angle-down nav-item__arrow"></i></span>
+          </a>
+          <div class="dropdown-parent-wrapper">
+            <div class="dropdown-wrapper">
+              <div class="nav-author__info">
+                <div class="author-img">
+                  <img src="{{url_for('static',filename='admin/img/author-nav.jpg')}}" alt="" class="rounded-circle">
+                </div>
+                <div>
+                  <h6>Rabbi Islam Rony</h6>
+                  <span>UI Designer</span>
+                </div>
+              </div>
+          
+              <a href="#" class="nav-author__signout">
+                <i class="uil uil-sign-out-alt"></i> Sign Out</a>
+            </div>
+          </div>
+
+        </div>
+  </div>
+  </li>
+
+  </ul>
+
+  <div class="navbar-right__mobileAction d-md-none">
+    <a href="#" class="btn-search">
+      <img src="img/svg/search.svg" alt="search" class="svg feather-search">
+      <img src="img/svg/x.svg" alt="x" class="svg feather-x"></a>
+    <a href="#" class="btn-author-action">
+      <img class="svg" src="img/svg/more-vertical.svg" alt="more-vertical"></a>
+  </div>
+  </div>
+
+</nav>
+
+
+
+</header>
+<main class="main-content">
+  <div class="sidebar-wrapper">
+    <div class="sidebar sidebar-collapse" id="sidebar">
+      <div class="sidebar__menu-group">
+        <ul class="sidebar_nav">
+          <li class="has-child open">
+            <a href="#" class="active">
+              <span class="nav-icon uil uil-create-dashboard"></span>
+              <span class="menu-text">Dashboard</span>
+              <span class="toggle-icon"></span>
+            </a>
+            
+            <li class="">
+              <a href="/ad-post">Post Ad</a>
+            </li>
+
+            
+            <li class="">
+              <a href="/submit-ad">Submit Ad</a>
+            </li>
+            
+            <li class="">
+              <a href="/submit-ad-job">Submit Job Ad</a>
+            </li>
+            
+            <li class="">
+              <a href="/adsearch">Search Ad</a>
+            </li>
+
+                <!--
+              <li class="">
+                <a href="pricing.html">Pricing</a>
+
+
+              </li>
+              <li class="">
+                <a href="cart.html">Cart</a>
+              </li>
+           
+
+              <li class="">
+                <a href="/order">Orders</a>
+              </li>
+ -->
+ 
+              <li class="">
+              </li>
+            </ul>
+
+
+          <li class="menu-title mt-30">
+            <span>Categories</span>
+
+
+            All Ads
+
+            
+          <li class="">
+            <a href="/categories">
+              <span class="nav-icon uil uil-signin"></span>
+              <span class="menu-text">All Ads</span>
+            </a>
+          </li>
+
+          
+          <li class="">
+            <a href="/categories">
+              <span class="nav-icon uil uil-signin"></span>
+              <span class="menu-text">Job</span>
+            </a>
+          </li>
+
+          
+          <li class="">
+            <a href="/categories">
+              <span class="nav-icon uil uil-signin"></span>
+              <span class="menu-text">Properties</span>
+            </a>
+          </li>
+
+          
+          <li class="">
+            <a href="/categories">
+              <span class="nav-icon uil uil-signin"></span>
+              <span class="menu-text">Properties</span>
+            </a>
+          </li>
+          
+          <li class="">
+            <a href="/categories">
+              <span class="nav-icon uil uil-signin"></span>
+              <span class="menu-text">Mobiles</span>
+            </a>
+          </li>
+          
+          <li class="">
+            <a href="/categories">
+              <span class="nav-icon uil uil-signin"></span>
+              <span class="menu-text">Bikes</span>
+            </a>
+          </li>
+          
+          <li class="">
+            <a href="/categories">
+              <span class="nav-icon uil uil-signin"></span>
+              <span class="menu-text">Electronics & Appliances</span>
+            </a>
+          </li>
+          
+          <li class="">
+            <a href="/categories">
+              <span class="nav-icon uil uil-signin"></span>
+              <span class="menu-text">Furniture</span>
+            </a>
+          </li>
+
+          
+          <li class="">
+            <a href="/categories">
+              <span class="nav-icon uil uil-signin"></span>
+              <span class="menu-text">Fashion</span>
+            </a>
+          </li>
+          
+          <li class="">
+            <a href="/categories">
+              <span class="nav-icon uil uil-signin"></span>
+              <span class="menu-text">Books,Sports & Hobbies</span>
+            </a>
+          </li>
+          
+          <li class="">
+            <a href="/categories">
+              <span class="nav-icon uil uil-signin"></span>
+              <span class="menu-text">Houses</span>
+            </a>
+          </li>
+          
+          <li class="">
+            <a href="/categories">
+              <span class="nav-icon uil uil-signin"></span>
+              <span class="menu-text">Cars</span>
+            </a>
+          </li>
+          
+          <li class="">
+            <a href="/categories">
+              <span class="nav-icon uil uil-signin"></span>
+              <span class="menu-text">Electronics & Computers
+              </span>
+            </a>
+          </li>
+          
+          <li class="">
+            <a href="/categories">
+              <span class="nav-icon uil uil-signin"></span>
+              <span class="menu-text">Health & Beauty
+              </span>
+            </a>
+          </li>
+
+
+          <!--
+          <li class="">
+            <a href="bookmarks.html">
+              <span class="nav-icon uil uil-bookmark"></span>
+              <span class="menu-text">Create Categories</span>
+            </a>
+          </li>
+
+        -->
+
+      
+
+             
+
+            </ul>
+          </li>
+
+
+
+          <li class="has-child">
+            <a href="#" class="">
+              <span class="nav-icon uil uil-apps"></span>
+              <span class="menu-text">Settings</span>
+              <span class="toggle-icon"></span>
+            </a>
+
+
+            <ul>
+              <li class="">
+                <a href="/profile">My Profile</a>
+              </li>
+              <li class="">
+                <a href="/profile-setting">Profile
+                  Settings</a>
+              </li>
+            </ul>
+          </li>
+
+
+
+
+          <!--
+
+<li class="">
+<a href="rate.html">Rate</a>
+</li>
+
+
+
+<li class="">
+<a href="result.html">Result</a>
+</li>
+
+
+
+<li class="">
+<a href="uploads.html">Upload</a>
+</li>
+</ul>
+</li>
+
+
+
+
+
+          <li class="">
+            <a href="banner.html">
+              <span class="nav-icon uil uil-thumbs-up"></span>
+              <span class="menu-text">Banners</span>
+            </a>
+          </li>
+--->
+
+
+          <!---
+<li class="">
+<a href="faq.html">
+<span class="nav-icon uil uil-question-circle"></span>
+<span class="menu-text">FAQ's</span>
+</a>
+
+
+<li class="">
+<a href="terms.html">
+<span class="nav-icon uil uil-question-circle"></span>
+<span class="menu-text">Terms & Conditions</span>
+</a>
+</li>
+
+-->
+
+          <li class="">
+            <a href="login.html">
+              <span class="nav-icon uil uil-signin"></span>
+              <span class="menu-text">Log In</span>
+            </a>
+          </li>
+          <li class="">
+            <a href="sign-up.html">
+              <span class="nav-icon uil uil-sign-out-alt"></span>
+              <span class="menu-text">Sign Up</span>
+            </a>
+          </li>
+
+
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  </div>
+  </div>
+
+
+</main>
+<div id="overlayer">
+  <div class="loader-overlay">
+    <div class="dm-spin-dots spin-lg">
+      <span class="spin-dot badge-dot dot-primary"></span>
+      <span class="spin-dot badge-dot dot-primary"></span>
+      <span class="spin-dot badge-dot dot-primary"></span>
+      <span class="spin-dot badge-dot dot-primary"></span>
+    </div>
+  </div>
+</div>
+
+
+<!--
+<div class="overlay-dark-sidebar"></div>
+<div class="customizer-overlay"></div>
+<div class="customizer-wrapper">
+  <div class="customizer">
+    <div class="customizer__head">
+      <h4 class="customizer__title">Customizer</h4>
+      <span class="customizer__sub-title">Customize your overview page layout</span>
+      <a href="#" class="customizer-close">
+        <img class="svg" src="admin/img/svg/x2.svg" alt="">
+      </a>
+    </div>
+    <div class="customizer__body">
+      <div class="customizer__single">
+        <h4>Layout Type</h4>
+        <ul class="customizer-list d-flex layout">
+          <li class="customizer-list__item">
+            <a href="https://demo.dashboardmarket.com/hexadash-html/ltr" class="active">
+              <img src="img/ltr.png" alt="">
+              <i class="fa fa-check-circle"></i>
+            </a>
+          </li>
+          <li class="customizer-list__item">
+            <a href="https://demo.dashboardmarket.com/hexadash-html/rtl">
+              <img src="admin/img/rtl.png" alt="">
+              <i class="fa fa-check-circle"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="customizer__single">
+        <h4>Sidebar Type</h4>
+        <ul class="customizer-list d-flex l_sidebar">
+          <li class="customizer-list__item">
+            <a href="#" data-layout="light" class="dark-mode-toggle active">
+              <img src="admin/img/light.png" alt="">
+              <i class="fa fa-check-circle"></i>
+            </a>
+          </li>
+          <li class="customizer-list__item">
+            <a href="#" data-layout="dark" class="dark-mode-toggle">
+              <img src="admin/img/dark.png" alt="">
+              <i class="fa fa-check-circle"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="customizer__single">
+        <h4>Navbar Type</h4>
+        <ul class="customizer-list d-flex l_navbar">
+          <li class="customizer-list__item">
+            <a href="#" data-layout="side" class="active">
+              <img src="img/side.png" alt="">
+              <i class="fa fa-check-circle"></i>
+            </a>
+          </li>
+          <li class="customizer-list__item top">
+            <a href="#" data-layout="top">
+              <img src="img/top.png" alt="">
+              <i class="fa fa-check-circle"></i>
+            </a>
+          </li>
+          <li class="colors"></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+-->
+
+</html>
+
+
+{% include'admin/footer.html'%}
+<!-- Mirrored from demo.dashboardmarket.com/hexadash-html/ltr/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Feb 2023 09:47:03 GMT -->
+
+</html>

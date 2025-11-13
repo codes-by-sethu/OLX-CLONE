@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include'user/userheader.html'%}
+
+<body>
+
+
+  <header>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          {%if session['PROJECT_NAME']=='olx'%}
+          <a class="navbar-logo" href="/"><img src="{{url_for('static',filename='admin/img/logo.png')}}" alt="logo"
+              width="60" height="50"></a>
+          {%else%}
+          <a class="navbar-logo" href="/"><img src="{{url_for('static',filename='img/logo_2.png')}}" alt="logo"
+              width="150" height="80"></a>
+          <br /> <br />
+          {%endif%}
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/userlogin"><i class="fa fa-user"></i>Login</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-->
+    </nav>
+  </header>
+
+  <main>
+    <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 login-wrap">
+      <div class="container">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 register-wrap">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <div class="panel-title">Create an account</div>
+            </div>
+            <div class="panel-body">
+              <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 register-box-left">
+                <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                <form class="form-horizontal" role="form">
+                  <input type="text" value="{{edit and passwordDatas.id}}" name="editId" id="editId" hidden />
+                  <div class="form-group">
+                    <div class="input-group custom-field-wrap">
+                      <label for="username">Name <b class="asterisk">*</b></label>
+                      <input id="username" type="text" class="form-control" name="username"
+                        value="{{edit and passwordDatas.username}}" placeholder="Name">
+                    </div>
+
+                    <div class="input-group custom-field-wrap">
+                      <label for="email">Email <b class="asterisk">*</b></label>
+                      <input id="email" type="text" class="form-control" name="email"
+                        value="{{edit and category.email}}" placeholder="Email">
+                    </div>
+                    <div class="input-group custom-field-wrap">
+                      <label for="email">Aadhar <b class="asterisk">*</b></label>
+                      <input id="aadhar" type="text" class="form-control" name="aadhar"
+                        value="{{edit and category.email}}" placeholder="Aadhar">
+                    </div>
+                    <div class="input-group custom-field-wrap">
+                      <label for="userPassword">Phone Number <b class="asterisk">*</b></label>
+                      <input id="phoneno" type="phoneno" class="form-control" name="phoneno" placeholder="Phone"
+                        value="{{edit and passwordDatas.phoneno}}">
+                    </div>
+                    <div class="input-group custom-field-wrap">
+                      <label for="userPassword">Password <b class="asterisk">*</b></label>
+                      <input id="password" type="password" class="form-control" name="password" placeholder="Password"
+                        value="{{edit and passwordDatas.password}}">
+                    </div>
+
+                </form>
+              </div>
+              <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 register-box-btm">
+                <center>
+                  <a href="#" class="btn btn-login" onclick="registration()" id="non_loader">Register </a>
+
+                  <button class="btn btn-login" type="button" disabled id="loader">
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    Sending OTP...
+                  </button>
+                </center>
+              </div>
+            </div>
+            <!-- /panel-body-->
+          </div>
+        </div>
+        <script>
+          $('#loader').hide();
+        </script>
+        <!-- /panel-->
+      </div>
+      <!-- /container-->
+    </section>
+  </main>
+
+
+
+  <script>
+    function registration() {
+      let username = document.getElementById('username').value;
+      let email = document.getElementById('email').value;
+      let password = document.getElementById('password').value;
+      let phoneno = document.getElementById('phoneno').value;
+      let aadhar = document.getElementById('aadhar').value;
+      
+      let editId = document.getElementById('editId').value;
+      // let editpassword = document.getElementById('editpassword').value;
+      //JS validation
+      $(".val_error").remove();
+
+      let validationFlag = true;
+      let phoneregex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+      var emailreg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+      var aadharreg =  /^[0-9]{4}[ -]?[0-9]{4}[ -]?[0-9]{4}$/;
+     
+
+      if (username.length < 1) {
+        $('#username').after('<span class="val_error" style="color:red">This field is required </span>');
+        validationFlag = false;
+      }
+      if (aadhar.length < 1 || !aadharreg.test(aadhar)) {
+        $('#aadhar').after('<span class="val_error" style="color:red">Please enter valid aadhar </span>');
+        validationFlag = false;
+      }
+      if (email.length < 1 || !emailreg.test(email)) {
+        $('#email').after('<span class="val_error" style="color:red">Please enter a valid email </span>');
+        validationFlag = false;
+      }
+      if (password.length < 1) {
+        $('#password').after('<span class="val_error" style="color:red">This field is required </span>');
+        validationFlag = false;
+      }
+      if (phoneno.length < 1 || !phoneregex.test(phoneno)) {
+        $('#phoneno').after('<span class="val_error" style="color:red">please enter a valid phone number</span > ');
+        validationFlag = false;
+      }
+
+      if (!validationFlag) {
+        return;
+      }
+      $('#non_loader').hide();
+      $('#loader').show();
+
+      //JS AJAX CALL    var form_data = new FormData();
+      var form_data = new FormData();
+      form_data.append('username', username);
+      form_data.append('email', email);
+      form_data.append('password', password);
+      form_data.append('phoneno', phoneno);
+      form_data.append('aadhar', aadhar);
+      
+      form_data.append('editId', editId);
+
+      //how to edit password in basic python?
+
+      $.ajax({
+        type: editId ? 'PUT' : 'POST',
+        url: '/registration',
+        data: form_data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (data) {
+          $('#non_loader').show();
+          $('#loader').hide();
+          if (data.status == true) {
+            window.location.href = "/verification?email=" + email
+          } else {
+            alert("Error,Please try again");
+          }
+
+
+        },
+      });
+    }
+  </script>
+
+  {% include'user/userfooter.html'%}

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include'user/userheader.html'%}
+
+
+<body>
+
+
+  <header>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          {% include 'user/menu.html' %}
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-->
+    </nav>
+  </header>
+
+  <main>
+    <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 submitad-wrap">
+      <div class="container submitad-main-outer">
+        <h4 class="form-ttl">Product Details</h4>
+        <form role="form">
+          <div class="col-md-7 col-md-offset-2 col-sm-7 col-sm-offset-2 submitad-main">
+            <input type="text" id="editId" hidden>
+            <div class="input-group contact-field-wrap">
+              <label>Product Title<b class="asterisk">*</b></label>
+              <input type="text" class="form-control" value="" id="title" placeholder="Vivo Y20">
+            </div><!-- /custom-field-wrap-->
+
+            <div class="input-group contact-field-wrap col-md-7">
+              <label>Category</label>
+              <select class="form-control" id="categoryid" name="categoryid" style="width: 72%;">
+                {% for categoryData in categoryDatas %}
+                <option value="{{categoryData.id}}" {% if edit and (event.categoryid==categoryData.id) %} selected {%
+                  endif %}>{{categoryData.name}}</option>
+                {% endfor %}
+              </select>
+            </div><!-- /custom-field-wrap-->
+            <div class="input-group contact-field-wrap">
+              <label>Brand</label>
+              <input type="text" class="form-control" value="" id="brand" placeholder="">
+            </div><!-- /custom-field-wrap-->
+
+            <div class="input-group contact-field-wrap">
+              <label>Condition</label>
+              <input type="text" class="form-control" value="" id="condition" placeholder="excellent">
+            </div><!-- /custom-field-wrap-->
+
+            <div class="input-group contact-field-wrap">
+              <label>Type</label>
+              <input type="text" class="form-control" value="" id="type1" placeholder="android">
+            </div><!-- /custom-field-wrap-->
+
+            <div class="input-group contact-field-wrap">
+              <label>Product Description<b class="asterisk">*</b></label>
+              <textarea class="form-control" rows="3" id="description"></textarea>
+              <br>
+              <!-- <sub>Maximum word limit is 200</sub> -->
+            </div><!-- /custom-field-wrap-->
+
+            <div class="input-group contact-field-wrap">
+              <label>Price<b class="asterisk">*</b></label>
+              <input type="number" class="form-control" value="" placeholder="34000" id="price">
+              <br>
+              <!-- <sub>Use only numbers as input</sub> -->
+            </div><!-- /custom-field-wrap-->
+
+            <div class="input-group contact-field-wrap">
+              <label>Manufacturers<b class="asterisk">*</b></label>
+              <input type="text" class="form-control" value="" placeholder="Samsung" id="manufacturers">
+            </div><!-- /custom-field-wrap-->
+
+            <div class="input-group custom-field-wrap">
+              <label>Upload Photos</label>
+              <div class="custom-file-input-wrap">
+                <input type="file" name="pic" id="image1" accept="image/*">
+                <input type="file" name="pic" id="image2" accept="image/*">
+                <input type="file" name="pic" id="image3" accept="image/*">
+              </div>
+              <br /><br /><br />
+              <img src="" id="preview_1" alt="" class="custom-file-input"
+                onerror='this.src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";'>
+              <img src="" id="preview_2" class="custom-file-input" onerror='this.src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";'>
+              <img src="" id="preview_3" class="custom-file-input" onerror='this.src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";'>
+
+
+            </div><!-- /custom-field-wrap-->
+          </div><!-- /submitad-main-->
+        </form>
+        <script>
+          image1.onchange = evt => {
+            const [file] = image1.files
+            if (file) {
+              preview_1.src = URL.createObjectURL(file)
+            }
+          }
+
+          image2.onchange = evt => {
+            const [file] = image2.files
+            if (file) {
+              preview_2.src = URL.createObjectURL(file)
+            }
+          }
+          image3.onchange = evt => {
+            const [file] = image3.files
+            if (file) {
+              preview_3.src = URL.createObjectURL(file)
+            }
+          }
+        </script>
+        <h4 class="form-ttl">Contact Details</h4>
+        <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 contact-dtl-wrap">
+          <form role="form" action="javascript:;" method="POST">
+            <div class="col-md-7 col-md-offset-2 col-sm-7 col-sm-offset-2 contact-dtl-main">
+
+              <div class="input-group contact-field-wrap">
+                <label>Name<b class="asterisk">*</b></label>
+                <input type="text" class="form-control" id="name" value="{{session['userDatas']['username']}}"
+                  placeholder="">
+              </div><!-- /custom-field-wrap-->
+
+              <div class="input-group contact-field-wrap">
+                <label>Email<b class="asterisk">*</b></label>
+                <input type="mail" class="form-control" id="email" value="{{session['userDatas']['email']}}"
+                  placeholder="">
+              </div><!-- /custom-field-wrap-->
+
+              <div class="input-group contact-field-wrap">
+                <label>Phone<b class="asterisk">*</b></label>
+                <input type="text" class="form-control" id="phone" value="{{session['userDatas']['phoneno']}}"
+                  placeholder="">
+              </div><!-- /custom-field-wrap-->
+
+
+              <div class="input-group contact-field-wrap">
+                <label>State<b class="asterisk">*</b></label>
+                <input type="text" class="form-control" id="state" value="Kerala" placeholder="Kerala">
+              </div><!-- /custom-field-wrap-->
+
+
+              <div class="input-group contact-field-wrap">
+                <label>City<b class="asterisk">*</b></label>
+                <input type="text" class="form-control" id="city" value="" placeholder="Ernakulam">
+              </div><!-- /custom-field-wrap-->
+              <div class="input-group contact-field-wrap">
+                <label>Postal Code<b class="asterisk">*</b></label>
+                <input type="text" class="form-control" value="" placeholder="" id="po">
+              </div><!-- /custom-field-wrap-->
+
+              <div class="input-group contact-field-wrap">
+                <label>Address</label>
+                <input type="text" class="form-control" value="" placeholder="" id="address">
+              </div><!-- /custom-field-wrap-->
+              <div class="submit-ad-button-box">
+                <!-- <a class="btn-submit-ad" href="#">Submit an Ad</a> -->
+                <button class="btn-submit-ad" onclick="save()">
+                  Sell your Product
+                </button>
+              </div>
+            </div><!-- /contact-dtl-main-->
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+  <style>
+    .val_error {
+      float: right;
+    }
+  </style>
+
+
+
+
+  <script>
+    function save() {
+
+      let title = document.getElementById('title').value;
+      let categoryid = document.getElementById('categoryid').value;
+      let brand = document.getElementById('brand').value;
+      let condition = document.getElementById('condition').value;
+      let type1 = document.getElementById('type1').value;
+      let description = document.getElementById('description').value;
+      let price = document.getElementById('price').value;
+      let manufacturers = document.getElementById('manufacturers').value;
+      // let image1 = document.getElementById('file1').value;
+      // let image2 = document.getElementById('file2').value;
+      // let image3 = document.getElementById('file3').value;
+
+      let name = document.getElementById('name').value;
+      let email = document.getElementById('email').value;
+      let phone = document.getElementById('phone').value;
+      let state = document.getElementById('state').value;
+      let city = document.getElementById('city').value;
+      let po = document.getElementById('po').value;
+      let address = document.getElementById('address').value;
+      let editId = document.getElementById('editId').value;
+
+
+      //JS validation
+      let file1 = $('#image1').prop('files')[0];
+      let file2 = $('#image2').prop('files')[0];
+      let file3 = $('#image3').prop('files')[0];
+
+      $(".val_error").remove();
+
+      let phoneregex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+      var emailreg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+      var pinreg = /^\d{6}$/;
+
+
+      let validationFlag = true;
+      if (title.length < 1) {
+        $('#title').after('<span class="val_error" style="color:red">This field is required </span>');
+        validationFlag = false;
+      }
+
+      if (categoryid.length < 1) {
+        $('#categoryid').after('<span class="val_error" style="color:red">This field is required</span>');
+        validationFlag = false;
+      }
+
+      if (brand.length < 1) {
+        $('#brand').after('<span class="val_error" style="color:red">This field is required</span>');
+        validationFlag = false;
+      }
+
+      if (condition.length < 1) {
+        $('#condition').after('<span class="val_error" style="color:red">This field is required</span>');
+        validationFlag = false;
+      }
+
+      if (type1.length < 1) {
+        $('#type1').after('<span class="val_error" style="color:red">This field is required</span>');
+        validationFlag = false;
+      }
+
+      if (description.length < 1) {
+        $('#description').after('<span class="val_error" style="color:red">This field is required</span>');
+        validationFlag = false;
+      }
+
+      if (price.length < 1) {
+        $('#price').after('<span class="val_error" style="color:red">This field is required</span>');
+        validationFlag = false;
+      }
+
+      if (manufacturers.length < 1) {
+        $('#manufacturers').after('<span class="val_error" style="color:red">This field is required</span>');
+        validationFlag = false;
+      }
+
+      if (!file1) {
+        $('#image1').after('<span class="val_error" style="color:red;margin-top: 67px;">Please upload 3 images</span>');
+        validationFlag = false;
+      }
+
+      if (!file2) {
+        $('#image2').after('<span class="val_error" style="color:red;margin-top: 67px;">Please upload 3 images</span>');
+        validationFlag = false;
+      }
+
+      if (!file3) {
+        $('#image3').after('<span class="val_error" style="color:red;margin-top: 67px;">Please upload 3 images</span>');
+        validationFlag = false;
+      }
+
+      if (name.length < 1) {
+        $('#name').after('<span class="val_error" style="color:red">This field is required</span>');
+        validationFlag = false;
+      }
+
+      if (email.length < 1 || !emailreg.test(email)) {
+        $('#email').after('<span class="val_error" style="color:red">Please enter valid email address</span>');
+        validationFlag = false;
+      }
+
+      if (phone.length < 1 || !phoneregex.test(phone)) {
+        $('#phone').after('<span class="val_error" style="color:red">Please enter valid phone</span>');
+        validationFlag = false;
+      }
+
+      if (state.length < 1) {
+        $('#state').after('<span class="val_error" style="color:red">This field is required</span>');
+        validationFlag = false;
+      }
+
+      if (city.length < 1) {
+        $('#city').after('<span class="val_error" style="color:red">This field is required</span>');
+        validationFlag = false;
+      }
+
+      if (po.length < 1 || !pinreg.test(po)) {
+        $('#po').after('<span class="val_error" style="color:red">Please enter valid pincode</span>');
+        validationFlag = false;
+      }
+
+      if (address.length < 1) {
+        $('#address').after('<span class="val_error" style="color:red">This field is required</span>');
+        validationFlag = false;
+      }
+
+
+      if (!validationFlag) {
+        return;
+      }
+      //JS AJAX CALL
+
+      var form_data = new FormData();
+      form_data.append('title', title);
+      form_data.append('categoryid', categoryid);
+      form_data.append('brand', brand);
+      form_data.append('condition', condition);
+      form_data.append('type1', type1);
+      form_data.append('description', description);
+      form_data.append('price', price);
+      form_data.append('manufacturers', manufacturers);
+      form_data.append('image1', file1);
+      form_data.append('image2', file2);
+      form_data.append('image3', file3);
+
+      form_data.append('name', name);
+      form_data.append('email', email);
+      form_data.append('phone', phone);
+      form_data.append('state', state);
+      form_data.append('city', city);
+      form_data.append('po', po);
+      form_data.append('address', address);
+
+      form_data.append('editId', editId);
+      // form_data.append('customer_id', session['userDatas']);
+
+
+      $.ajax({
+        type: editId ? 'PUT' : 'POST',
+        url: '/submit_ad',
+        data: form_data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (data) {
+          if (data.status == true) {
+            alert("Product Saved");
+            window.location.href = "/"
+          } else {
+            alert("Product not inserted");
+          }
+        },
+      });
+    }
+  </script>
+
+  {% include'user/userfooter.html' %}
+</body>
+
+<!-- Mirrored from demo.dashboardmarket.com/hexadash-html/ltr/add-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Feb 2023 09:47:34 GMT -->
+
+</html>
+</body>
+
+</html>

@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from demo.dashboardmarket.com/hexadash-html/ltr/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Feb 2023 09:47:01 GMT -->
+{% include'admin/header.html'%}
+
+
+
+<nav class="navbar navbar-light">
+  <div class="navbar-left">
+    <div class="logo-area">
+      <a class="navbar-brand" href="#">
+        {%if session['PROJECT_NAME']=='olx'%}
+        <a class="navbar-logo" href="/"><img src="{{url_for('static',filename='admin/img/logo.png')}}" alt="logo"
+            width="60" height="50"></a>
+        {%else%}
+        <a class="navbar-logo" href="/"><img src="{{url_for('static',filename='img/logo_2.png')}}" alt="logo"
+            width="150" height="80"></a>
+        <br /> <br />
+        {%endif%}
+        <!-- <img class="dark" src="{{url_for('static',filename='admin/img/logo.png')}}" alt="logo" width="5" height="50">
+        <img class="light" src="{{url_for('static',filename='admin/img/logo.png')}}" alt="logo" width="5" height="50"> -->
+      </a>
+      <a href="#" class="sidebar-toggle">
+        <img class="svg" src="{{url_for('static',filename='admin/img/svg/align-center-alt.svg')}}" alt="img">
+      </a>
+    </div>
+  </div>
+
+  <div class="navbar-right__mobileAction d-md-none">
+    <a href="#" class="btn-search">
+      <img src="img/svg/search.svg" alt="search" class="svg feather-search">
+      <img src="img/svg/x.svg" alt="x" class="svg feather-x"></a>
+    <a href="#" class="btn-author-action">
+      <img class="svg" src="img/svg/more-vertical.svg" alt="more-vertical"></a>
+  </div>
+  </div>
+
+</nav>
+{% if 'adminlogin' and session %}
+{% else %}
+<script>
+  alert('Session Expired.Please login.')
+  window.location.href = '/adminlogin'
+</script>
+{% endif %}
+
+
+</header>
+<main class="main-content">
+  <div class="sidebar-wrapper">
+    <div class="sidebar sidebar-collapse" id="sidebar">
+      <div class="sidebar__menu-group">
+        <ul class="sidebar_nav">
+          <li>
+            <a href="/dashboard" class="active">
+              <span class="nav-icon uil uil-create-dashboard"></span>
+              <span class="menu-text">Dashboard</span>
+              <span class="toggle-icon"></span>
+            </a>
+          </li>
+
+          <li class="menu-title mt-30">
+            <span>Categories</span>
+
+          <li class="">
+            <a href="/categories">
+              <span class="nav-icon uil uil-signin"></span>
+              <span class="menu-text">Categories</span>
+            </a>
+          </li>
+
+          <li class="menu-title mt-30">
+            <span>Product Management</span>
+
+
+          <li class="has-child">
+            <a href="#" class="">
+              <span class="nav-icon uil uil-bag"></span>
+              <span class="menu-text text-initial">Products</span>
+
+              <span class="toggle-icon"></span>
+            </a>
+
+            <ul>
+
+              <li class="">
+                <a href="/adm_products?type=Active">Active Products
+                </a>
+              </li>
+              <li class="">
+                <a href="/adm_products?type=Blocked">Blocked Products
+                </a>
+              </li>
+              <li class="">
+                <a href="/adm_products?type=Sold Out"> Sold Out Products
+                </a>
+              </li>
+
+            </ul>
+
+
+          <li class="menu-title mt-30">
+            <span>Customer Management</span>
+          </li>
+
+
+
+          <li class="has-child">
+            <a href="#" class="">
+              <span class="nav-icon uil uil-users-alt"></span>
+              <span class="menu-text">Customers</span>
+              <span class="toggle-icon"></span>
+            </a>
+
+
+            <ul class="subMenu">
+
+              <li>
+                <a href="/adm_customers?type=Active" class="">Customers</a>
+              </li>
+
+              <li class="">
+                <a href="/adm_customers?type=Blocked">Blocked Customers</a>
+              </li>
+              <li class="">
+                <a href="/adm_reports">Customer Report/Block</a>
+              </li>
+
+              <!-- <li class="">
+                <a href="sellers.html">Sellers</a>
+              </li> -->
+
+
+
+            </ul>
+          </li>
+
+
+          <li class="menu-title mt-30">
+            <span>Admin Management</span>
+          </li>
+          <li>
+            <a href="/adminlogout" class="active">
+              <span class="nav-icon uil uil-create-dashboard"></span>
+              <span class="menu-text">Logout</span>
+              <span class="toggle-icon"></span>
+            </a>
+          </li>
+
+
+          <!-- <li class="has-child">
+            <a href="#" class="">
+              <span class="nav-icon uil uil-apps"></span>
+              <span class="menu-text">Settings</span>
+              <span class="toggle-icon"></span>
+            </a>
+            <ul>
+              <li class="">
+                <a href="/profile">My Profile</a>
+              </li>
+              <li class="">
+                <a href="/profile-setting">Logout</a>
+              </li>
+
+            </ul>
+
+          </li> -->
+
+
+
+
+          <!--
+
+          
+                <li class="">
+                <a href="rate.html">Rate</a>
+                </li>
+
+
+
+                <li class="">
+                <a href="result.html">Result</a>
+                </li>
+
+
+
+                <li class="">
+                <a href="uploads.html">Upload</a>
+                </li>
+                </ul>
+                </li>
+
+
+                -->
+
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!---
+  <div class="contents">
+    <div class="crm mb-25">
+      <div class="container-fluid">
+        <div class="row ">
+          <div class="col-lg-12">
+            <div class="breadcrumb-main">
+              <h4 class="text-capitalize breadcrumb-title">OLX</h4>
+              <div class="breadcrumb-action justify-content-center flex-wrap">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+<div id="overlayer">
+  <div class="loader-overlay">
+    <div class="dm-spin-dots spin-lg">
+      <span class="spin-dot badge-dot dot-primary"></span>
+      <span class="spin-dot badge-dot dot-primary"></span>
+      <span class="spin-dot badge-dot dot-primary"></span>
+      <span class="spin-dot badge-dot dot-primary"></span>
+    </div>
+  </div>
+</div>
+-->
+
+</html>
+
+
+{% include'admin/footer.html'%}
+<!-- Mirrored from demo.dashboardmarket.com/hexadash-html/ltr/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Feb 2023 09:47:03 GMT -->
+
+</html>

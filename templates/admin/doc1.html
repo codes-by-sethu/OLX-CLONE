@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+{% include 'admin/header.html' %}
+
+<body class="cbp-spmenu-push">
+  <div class="main-content">
+    <!--left-fixed -navigation-->
+    {% include 'admin/sidebar.html' %}
+    <!--left-fixed -navigation-->
+    <!-- header-starts -->
+    {% include 'admin/banner.html' %}
+
+    <div id="page-wrapper">
+      <div class="main-page">
+        <div class="tables">
+          <h3 class="title1">Categories</h3>
+          <div class="panel-body widget-shadow">
+            <h3><a href="/add_cat"><span class="label label-primary">Add Category</span></a></h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Category Name</th>
+                  <th>Thumbnail</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for categoryData in categoryDatas %}
+                <tr>
+                  <td>{{categoryData.category}}</td>
+                  <td>
+                    <img src="{{url_for('static',filename='uploads/'+categoryData.image)}}"/>
+                  </td>
+                  <td>
+                    {% if categoryData.status == 'Active' %}
+                    <label class="badge badge-success">
+                      {{categoryData.status}}
+                    </label>
+                    {% else %}
+                    <label class="badge badge-danger">
+                      {{categoryData.status}}
+                    </label>
+                    {% endif %}
+                  </td>
+                  <td>
+                    <a href="/editCategory/{{categoryData.id}}" class="btn btn-success btn-rounded btn-icon btn-sm" >
+                      Edit
+                    </a>
+                    <button type="button" class="btn btn-danger btn-rounded btn-icon btn-sm"
+                      onclick="deleteData('{{categoryData.id}}')">
+                      <i class="ti-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% include 'admin/footer.html' %}
+  </div>
+</body>
+
+</html>
